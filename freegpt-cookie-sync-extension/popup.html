@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FreeGPT Session Sync</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      width: 320px;
+      margin: 0;
+      padding: 16px;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .status-row:last-child {
+      margin-bottom: 0;
+    }
+    .status-badge {
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 11px;
+    }
+    .badge-ok {
+      background: #064e3b;
+      color: #34d399;
+    }
+    .badge-missing {
+      background: #7f1d1d;
+      color: #f87171;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #10b981;
+      color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: #059669;
+    }
+    .btn-secondary {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+    .info {
+      font-size: 11px;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>⚡ FreeGPT Session Sync</h2>
+  <div class="status-card">
+    <div class="status-row">
+      <span>Session Token:</span>
+      <span id="session-badge" class="status-badge badge-missing">Checking...</span>
+    </div>
+    <div class="status-row">
+      <span>Access Token:</span>
+      <span id="access-badge" class="status-badge badge-missing">Checking...</span>
+    </div>
+    <div class="status-row">
+      <span>User Account:</span>
+      <span id="user-display" style="color: #94a3b8;">-</span>
+    </div>
+  </div>
+
+  <button id="btn-export" class="btn-primary" disabled>Export chatgpt-auth.json</button>
+  <button id="btn-copy" class="btn-secondary" disabled>Copy Access Token</button>
+
+  <div class="info">
+    Open & sign into <a href="https://chatgpt.com" target="_blank" style="color: #38bdf8;">chatgpt.com</a> first.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
