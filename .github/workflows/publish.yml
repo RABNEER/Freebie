@@ -36,12 +36,16 @@ jobs:
     - name: Verify package metadata
       run: twine check dist/*
 
-    - name: Publish with Token (if secret is present)
-      if: "${{ secrets.PYPI_API_TOKEN != '' }}"
+    - name: Publish with Token
+      if: env.HAS_TOKEN == 'true'
+      env:
+        HAS_TOKEN: ${{ secrets.PYPI_API_TOKEN != '' }}
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
 
-    - name: Publish with Trusted Publishing OIDC (if no secret token)
-      if: "${{ secrets.PYPI_API_TOKEN == '' }}"
+    - name: Publish with OIDC Trusted Publishing
+      if: env.HAS_TOKEN != 'true'
+      env:
+        HAS_TOKEN: ${{ secrets.PYPI_API_TOKEN != '' }}
       uses: pypa/gh-action-pypi-publish@release/v1

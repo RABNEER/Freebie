@@ -3,7 +3,7 @@ import json
 import re
 import time
 import uuid
-from typing import AsyncGenerator, Dict, Optional, Tuple
+from typing import Any, AsyncGenerator, Dict, Optional, Tuple
 
 from curl_cffi import requests
 
