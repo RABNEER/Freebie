@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml README.md ./
-COPY freegpt/ ./freegpt/
+COPY freebie/ ./freebie/
 
 RUN pip install --no-cache-dir .
 
 EXPOSE 8080
 
-ENTRYPOINT ["freegpt"]
+ENTRYPOINT ["freebie"]
 CMD ["--host", "0.0.0.0", "--port", "8080"]

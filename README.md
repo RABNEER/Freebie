@@ -1,8 +1,8 @@
-# FreeGPT ⚡
+# Freebie ⚡
 
 <div align="center">
 
-![FreeGPT Banner](https://img.shields.io/badge/FreeGPT-v0.1.0-blue?style=for-the-badge&logo=openai&logoColor=white)
+![Freebie Banner](https://img.shields.io/badge/Freebie-v0.1.0-blue?style=for-the-badge&logo=openai&logoColor=white)
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-brightgreen?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
@@ -18,12 +18,12 @@
 
 ---
 
-## 🌟 Why FreeGPT?
+## 🌟 Why Freebie?
 
-Standard reverse-engineered proxies often face Cloudflare Turnstile blocks, brittle session extractors, or IP blocks on anonymous endpoints. **FreeGPT** solves this with a dual-engine architecture:
+Standard reverse-engineered proxies often face Cloudflare Turnstile blocks, brittle session extractors, or IP blocks on anonymous endpoints. **Freebie** solves this with a dual-engine architecture:
 
 1. **Instant Out-of-the-Box Zero-Auth Mode:**  
-   Don't have a ChatGPT session token? No problem. FreeGPT incorporates a native Google Gemini Web client. Send requests immediately without any login, token, or session cookie—enjoying blazing-fast responses and deep reasoning.
+   Don't have a ChatGPT session token? No problem. Freebie incorporates a native Google Gemini Web client. Send requests immediately without any login, token, or session cookie—enjoying blazing-fast responses and deep reasoning.
 2. **Full ChatGPT Web Capabilities:**  
    Provide your ChatGPT `__Secure-next-auth.session-token`, and unlock `gpt-4o`, `gpt-4.5`, `o1`, and `o3-mini` with real-time reasoning extraction (`delta.reasoning_content`) and tool/function calling.
 3. **Native Sentinel Proof-of-Work (PoW) Engine:**  
@@ -40,7 +40,7 @@ Standard reverse-engineered proxies often face Cloudflare Turnstile blocks, brit
 - 🧠 **Deep Reasoning Stream**: Supports real-time reasoning and thought streaming for `o1`, `o3-mini`, and `gemini-3.5-flash-thinking`.
 - 🛠️ **Full Function Calling**: Translates OpenAI `tools` definitions into model instructions and reconstructs `tool_calls` JSON from outputs.
 - 🔄 **Autonomous Token Refresh**: Session manager continuously refreshes OAuth Bearer tokens from ChatGPT's session endpoint before expiry.
-- 🧩 **1-Click Companion Chrome Extension**: Easily extract session tokens and cookies from `chatgpt.com` into FreeGPT with a single click.
+- 🧩 **1-Click Companion Chrome Extension**: Easily extract session tokens and cookies from `chatgpt.com` into Freebie with a single click.
 - 🧪 **Production Quality**: Complete automated test suite covering PoW, protocol translation, routing, and SSE streaming.
 
 ---
@@ -55,7 +55,7 @@ Standard reverse-engineered proxies often face Cloudflare Turnstile blocks, brit
                                                       │ HTTP / SSE (/v1/chat/completions)
                                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                             FreeGPT Server                                              │
+│                                             Freebie Server                                              │
 │                                                                                                         │
 │  ┌────────────────────────┐         ┌────────────────────────┐         ┌─────────────────────────────┐  │
 │  │   FastAPI ASGI Engine  │ ──────> │    Model Dispatcher    │ ──────> │   OpenAI Protocol Mapper    │  │
@@ -84,14 +84,14 @@ Standard reverse-engineered proxies often face Cloudflare Turnstile blocks, brit
 ### From PyPI (Recommended)
 
 ```bash
-pip install freegpt
+pip install freebie-api
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/RABNEER/FreeGPT.git
-cd FreeGPT
+git clone https://github.com/RABNEER/Freebie.git
+cd Freebie
 pip install -e .
 ```
 
@@ -101,16 +101,16 @@ pip install -e .
 
 ### 1. Launch Server
 
-Start the FreeGPT API server:
+Start the Freebie API server:
 
 ```bash
-freegpt --port 8080
+freebie --port 8080
 ```
 
 Or run via Python module:
 
 ```bash
-python -m freegpt --port 8080
+python -m freebie --port 8080
 ```
 
 The server binds to `http://127.0.0.1:8080` with documentation at `http://127.0.0.1:8080/docs`.
@@ -120,14 +120,14 @@ The server binds to `http://127.0.0.1:8080` with documentation at `http://127.0.
 Run built-in automated diagnostics to test upstream connections:
 
 ```bash
-freegpt --check
+freebie --check
 ```
 
 ---
 
 ## ⚡ Zero-Auth Instant Mode (Gemini Flash)
 
-No account or API key? FreeGPT is immediately functional!
+No account or API key? Freebie is immediately functional!
 
 ### Python (OpenAI SDK)
 
@@ -213,14 +213,14 @@ To use official OpenAI ChatGPT models (`gpt-4o`, `o3-mini`, `o1`), provide your 
 ### Starting with Token
 
 ```bash
-freegpt --port 8080 --session-token "YOUR_SESSION_TOKEN_HERE"
+freebie --port 8080 --session-token "YOUR_SESSION_TOKEN_HERE"
 ```
 
 Or via environment variable:
 
 ```bash
-export FREEGPT_SESSION_TOKEN="YOUR_SESSION_TOKEN_HERE"
-freegpt --port 8080
+export FREEBIE_SESSION_TOKEN="YOUR_SESSION_TOKEN_HERE"
+freebie --port 8080
 ```
 
 ### Reasoning Stream with `o3-mini`
@@ -238,7 +238,7 @@ stream = client.chat.completions.create(
 
 for chunk in stream:
     delta = chunk.choices[0].delta
-    # FreeGPT streams thinking process into reasoning_content
+    # Freebie streams thinking process into reasoning_content
     if hasattr(delta, "reasoning_content") and delta.reasoning_content:
         print(f"[Thinking] {delta.reasoning_content}", end="", flush=True)
     if delta.content:
@@ -250,7 +250,7 @@ print()
 
 ## 🛠️ Tool Calling (Function Calling)
 
-FreeGPT translates OpenAI functions into system prompt specifications and automatically parses returned markdown `tool_call` blocks back into standard OpenAI `tool_calls` JSON:
+Freebie translates OpenAI functions into system prompt specifications and automatically parses returned markdown `tool_call` blocks back into standard OpenAI `tool_calls` JSON:
 
 ```python
 from openai import OpenAI
@@ -288,13 +288,13 @@ if choice.finish_reason == "tool_calls":
 
 ## 🧩 Companion Chrome Extension
 
-FreeGPT includes a lightweight companion browser extension located in [`freegpt-cookie-sync-extension/`](freegpt-cookie-sync-extension/):
+Freebie includes a lightweight companion browser extension located in [`freebie-cookie-sync-extension/`](freebie-cookie-sync-extension/):
 
 1. Open Chrome and navigate to `chrome://extensions/`.
 2. Enable **Developer mode** (top right).
-3. Click **Load unpacked** and select the `freegpt-cookie-sync-extension` folder.
-4. Navigate to [chatgpt.com](https://chatgpt.com) and click the FreeGPT extension icon.
-5. Click **"Export Credentials"** to download `chatgpt-auth.json` or copy your token directly into FreeGPT.
+3. Click **Load unpacked** and select the `freebie-cookie-sync-extension` folder.
+4. Navigate to [chatgpt.com](https://chatgpt.com) and click the Freebie extension icon.
+5. Click **"Export Credentials"** to download `chatgpt-auth.json` or copy your token directly into Freebie.
 
 ---
 
@@ -317,7 +317,7 @@ FreeGPT includes a lightweight companion browser extension located in [`freegpt-
 
 ## ⚙️ Configuration
 
-FreeGPT can be configured using a `config.json` file in the working directory:
+Freebie can be configured using a `config.json` file in the working directory:
 
 ```json
 {
@@ -339,14 +339,14 @@ FreeGPT can be configured using a `config.json` file in the working directory:
 
 | Variable | Description |
 | :--- | :--- |
-| `FREEGPT_PORT` | Port to bind server (default: `8080`) |
-| `FREEGPT_HOST` | Host address (default: `0.0.0.0`) |
-| `FREEGPT_CONFIG` | Custom path to configuration JSON file |
-| `FREEGPT_API_KEYS` | Comma-separated API keys for protecting your endpoint |
-| `FREEGPT_PROXY` | HTTP/HTTPS/SOCKS5 proxy (e.g. `http://127.0.0.1:7890`) |
-| `FREEGPT_SESSION_TOKEN` | ChatGPT `__Secure-next-auth.session-token` |
-| `FREEGPT_ACCESS_TOKEN` | ChatGPT OAuth Bearer access token |
-| `FREEGPT_COOKIE_FILE` | Path to cookie file or `chatgpt-auth.json` |
+| `FREEBIE_PORT` | Port to bind server (default: `8080`) |
+| `FREEBIE_HOST` | Host address (default: `0.0.0.0`) |
+| `FREEBIE_CONFIG` | Custom path to configuration JSON file |
+| `FREEBIE_API_KEYS` | Comma-separated API keys for protecting your endpoint |
+| `FREEBIE_PROXY` | HTTP/HTTPS/SOCKS5 proxy (e.g. `http://127.0.0.1:7890`) |
+| `FREEBIE_SESSION_TOKEN` | ChatGPT `__Secure-next-auth.session-token` |
+| `FREEBIE_ACCESS_TOKEN` | ChatGPT OAuth Bearer access token |
+| `FREEBIE_COOKIE_FILE` | Path to cookie file or `chatgpt-auth.json` |
 
 ---
 
@@ -356,10 +356,10 @@ FreeGPT can be configured using a `config.json` file in the working directory:
 
 ```bash
 docker run -d \
-  --name freegpt \
+  --name freebie \
   -p 8080:8080 \
   --restart unless-stopped \
-  rabneer/freegpt:latest
+  rabneer/freebie:latest
 ```
 
 ### Using Docker Compose
@@ -368,15 +368,15 @@ docker run -d \
 version: "3.9"
 
 services:
-  freegpt:
+  freebie:
     build: .
-    container_name: freegpt
+    container_name: freebie
     restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
-      - FREEGPT_PORT=8080
-      - FREEGPT_HOST=0.0.0.0
+      - FREEBIE_PORT=8080
+      - FREEBIE_HOST=0.0.0.0
 ```
 
 Run:
@@ -412,7 +412,7 @@ tests/test_server.py::test_list_models_endpoint PASSED                   [ 80%]
 tests/test_server.py::test_chat_completions_gemini_zero_auth PASSED      [ 86%]
 tests/test_server.py::test_chat_completions_chatgpt_authenticated PASSED [ 93%]
 tests/test_server.py::test_chat_completions_with_tool_calling PASSED     [100%]
-============================== 15 passed in 0.30s ==============================
+============================== 15 passed in 0.33s ==============================
 ```
 
 ---

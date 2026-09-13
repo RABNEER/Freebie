@@ -1,4 +1,4 @@
-"""CLI Entry point: python -m freegpt or `freegpt` command."""
+"""CLI Entry point: python -m freebie or `freebie` command."""
 import argparse
 import asyncio
 import os
@@ -14,7 +14,7 @@ from .models import MODELS
 
 def run_diagnostics():
     """Run connectivity and authentication diagnostics."""
-    print(f"FreeGPT v{__version__} Diagnostic Check")
+    print(f"Freebie v{__version__} Diagnostic Check")
     print("=" * 50)
 
     proxy = CONFIG.get("proxy")
@@ -81,7 +81,7 @@ def run_diagnostics():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="FreeGPT - ChatGPT Web to OpenAI-compatible API")
+    parser = argparse.ArgumentParser(description="Freebie - OpenAI-compatible API proxy for ChatGPT & Gemini Web")
     parser.add_argument("--host", type=str, default=None, help="Host to bind (default: 0.0.0.0)")
     parser.add_argument("--port", type=int, default=None, help="Port to bind (default: 8080)")
     parser.add_argument("--config", type=str, default=None, help="Path to config.json")
@@ -90,11 +90,11 @@ def main():
     parser.add_argument("--access-token", type=str, default=None, help="ChatGPT Bearer access token")
     parser.add_argument("--session-token", type=str, default=None, help="ChatGPT __Secure-next-auth.session-token")
     parser.add_argument("--check", action="store_true", help="Run upstream connectivity diagnostics and exit")
-    parser.add_argument("--version", action="version", version=f"freegpt {__version__}")
+    parser.add_argument("--version", action="version", version=f"freebie {__version__}")
     args = parser.parse_args()
 
     # Load configuration
-    cfg_file = args.config or os.environ.get("FREEGPT_CONFIG") or find_config()
+    cfg_file = args.config or os.environ.get("FREEBIE_CONFIG") or os.environ.get("FREEGPT_CONFIG") or find_config()
     if cfg_file:
         load_config(cfg_file)
 
@@ -118,7 +118,7 @@ def main():
     host = CONFIG["host"]
     port = CONFIG["port"]
 
-    print(f"FreeGPT v{__version__} - ChatGPT Web to OpenAI API")
+    print(f"Freebie v{__version__} - ChatGPT & Gemini Web to OpenAI API")
     print(f"  Listening on: http://{host}:{port}")
     print(f"  Base URL:     http://localhost:{port}/v1")
     print(f"  Models:       {', '.join(MODELS.keys())}")
@@ -128,7 +128,7 @@ def main():
     print()
 
     uvicorn.run(
-        "freegpt.server:app",
+        "freebie.server:app",
         host=host,
         port=port,
         reload=False,

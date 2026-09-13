@@ -1,4 +1,4 @@
-"""Gemini Web StreamGenerate provider for zero-auth responses in FreeGPT."""
+"""Gemini Web StreamGenerate provider for zero-auth responses in Freebie."""
 import json
 import re
 import time

@@ -1,13 +1,13 @@
 version: '3.8'
 
 services:
-  freegpt:
+  freebie:
     build: .
-    container_name: freegpt
+    container_name: freebie
     restart: unless-stopped
     ports:
       - "8080:8080"
     volumes:
       - ./config.json:/app/config.json:ro
     environment:
-      - FREEGPT_CONFIG=/app/config.json
+      - FREEBIE_CONFIG=/app/config.json

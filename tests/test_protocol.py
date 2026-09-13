@@ -1,6 +1,6 @@
 import pytest
-from freegpt.protocol import messages_to_prompt, parse_tool_calls, build_conversation_payload, parse_chatgpt_sse_line
-from freegpt.models import resolve_model, MODELS
+from freebie.protocol import messages_to_prompt, parse_tool_calls, build_conversation_payload, parse_chatgpt_sse_line
+from freebie.models import resolve_model, MODELS
 
 def test_resolve_model():
     # Authenticated user asking for gpt-4o

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "FreeGPT Session Sync",
+  "name": "Freebie Session Sync",
   "version": "1.0.0",
-  "description": "Extract active ChatGPT session credentials for FreeGPT in one click.",
+  "description": "Extract active ChatGPT session credentials for Freebie in one click.",
   "permissions": [
     "cookies"
   ],
@@ -11,6 +11,6 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "FreeGPT Session Sync"
+    "default_title": "Freebie Session Sync"
   }
 }

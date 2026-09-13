@@ -2,7 +2,7 @@ import os
 import tempfile
 import json
 import pytest
-from freegpt.config import CONFIG, DEFAULT_CONFIG, load_config, find_config
+from freebie.config import CONFIG, DEFAULT_CONFIG, load_config, find_config
 
 def test_default_config():
     assert DEFAULT_CONFIG["port"] == 8080
@@ -23,8 +23,8 @@ def test_load_config_file():
         os.remove(temp_path)
 
 def test_env_override(monkeypatch):
-    monkeypatch.setenv("FREEGPT_PORT", "7777")
-    monkeypatch.setenv("FREEGPT_API_KEYS", "key1,key2")
+    monkeypatch.setenv("FREEBIE_PORT", "7777")
+    monkeypatch.setenv("FREEBIE_API_KEYS", "key1,key2")
     cfg = load_config()
     assert cfg["port"] == 7777
     assert cfg["api_keys"] == ["key1", "key2"]

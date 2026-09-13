@@ -1,5 +1,5 @@
 import pytest
-from freegpt.config import CONFIG, DEFAULT_CONFIG
+from freebie.config import CONFIG, DEFAULT_CONFIG
 
 @pytest.fixture(autouse=True)
 def reset_config():

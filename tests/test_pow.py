@@ -1,5 +1,5 @@
 import pytest
-from freegpt.pow import fnv1a_mix, solve_pow, generate_requirements_token_answer
+from freebie.pow import fnv1a_mix, solve_pow, generate_requirements_token_answer
 
 def test_fnv1a_mix():
     # Test known string produces valid 8-char hex string

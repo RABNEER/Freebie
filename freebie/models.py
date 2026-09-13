@@ -1,4 +1,4 @@
-"""Model mapping and multi-provider routing for FreeGPT."""
+"""Model mapping and multi-provider routing for Freebie."""
 from typing import Any, Dict, Optional, Tuple
 
 MODELS: Dict[str, dict] = {

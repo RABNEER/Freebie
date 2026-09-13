@@ -3,20 +3,19 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "freegpt"
+name = "freebie-api"
 version = "0.1.0"
-description = "Convert ChatGPT Web into an OpenAI-compatible API"
+description = "High-performance OpenAI-compatible proxy reverse-engineering ChatGPT Web with zero-auth Gemini Flash fallback"
 readme = "README.md"
 requires-python = ">=3.9"
-license = { text = "MIT" }
+license = "MIT"
 authors = [
-    { name = "FreeGPT Contributors" }
+    { name = "Ranveer Kumar (RABNEER)", email = "kr715ranveer@gmail.com" }
 ]
-keywords = ["chatgpt", "openai", "api-proxy", "llm", "ai", "reverse-engineering", "fastapi"]
+keywords = ["freebie", "chatgpt", "gemini", "openai", "api-proxy", "llm", "ai", "fastapi"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -44,9 +43,10 @@ dev = [
 ]
 
 [project.scripts]
-freegpt = "freegpt.__main__:main"
+freebie = "freebie.__main__:main"
+freegpt = "freebie.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["freegpt*"]
+include = ["freebie*"]
 exclude = ["tests*", "docs*"]

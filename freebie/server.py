@@ -18,7 +18,7 @@ from .models import MODELS, resolve_model
 from .protocol import build_conversation_payload, messages_to_prompt, parse_tool_calls
 
 app = FastAPI(
-    title="FreeGPT",
+    title="Freebie",
     version=__version__,
     description="High-performance OpenAI-compatible API proxy for ChatGPT & Gemini Web",
 )
@@ -115,7 +115,7 @@ async def health_check():
     upstream_auth = bool(auth_manager.refresh_access_token_if_needed(CONFIG.get("proxy")))
     return {
         "status": "ok",
-        "service": "FreeGPT",
+        "service": "Freebie",
         "version": __version__,
         "models": list(MODELS.keys()),
         "authenticated_upstream": upstream_auth,

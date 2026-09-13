@@ -1,4 +1,4 @@
-"""Configuration management for FreeGPT."""
+"""Configuration management for Freebie."""
 import json
 import os
 from typing import Any, Dict, List, Optional
@@ -21,6 +21,14 @@ DEFAULT_CONFIG: Dict[str, Any] = {
 CONFIG: Dict[str, Any] = dict(DEFAULT_CONFIG)
 
 
+def _get_env(*keys: str) -> Optional[str]:
+    """Retrieve first matched environment variable."""
+    for k in keys:
+        if k in os.environ:
+            return os.environ[k]
+    return None
+
+
 def load_config(path: Optional[str] = None) -> Dict[str, Any]:
     """Load configuration from a JSON file and environment variables."""
     if path and os.path.exists(path):
@@ -28,26 +36,36 @@ def load_config(path: Optional[str] = None) -> Dict[str, Any]:
             file_data = json.load(f)
             CONFIG.update(file_data)
 
-    # Environment variable overrides
-    if "FREEGPT_PORT" in os.environ:
-        CONFIG["port"] = int(os.environ["FREEGPT_PORT"])
-    if "FREEGPT_HOST" in os.environ:
-        CONFIG["host"] = os.environ["FREEGPT_HOST"]
-    if "FREEGPT_PROXY" in os.environ:
-        CONFIG["proxy"] = os.environ["FREEGPT_PROXY"]
+    # Environment variable overrides (supports both FREEBIE_* and FREEGPT_*)
+    port_env = _get_env("FREEBIE_PORT", "FREEGPT_PORT")
+    if port_env:
+        CONFIG["port"] = int(port_env)
+
+    host_env = _get_env("FREEBIE_HOST", "FREEGPT_HOST")
+    if host_env:
+        CONFIG["host"] = host_env
+
+    proxy_env = _get_env("FREEBIE_PROXY", "FREEGPT_PROXY")
+    if proxy_env:
+        CONFIG["proxy"] = proxy_env
     elif "HTTPS_PROXY" in os.environ and not CONFIG.get("proxy"):
         CONFIG["proxy"] = os.environ["HTTPS_PROXY"]
     elif "HTTP_PROXY" in os.environ and not CONFIG.get("proxy"):
         CONFIG["proxy"] = os.environ["HTTP_PROXY"]
 
-    if "FREEGPT_ACCESS_TOKEN" in os.environ:
-        CONFIG["access_token"] = os.environ["FREEGPT_ACCESS_TOKEN"]
-    if "FREEGPT_SESSION_TOKEN" in os.environ:
-        CONFIG["session_token"] = os.environ["FREEGPT_SESSION_TOKEN"]
-    if "FREEGPT_COOKIE_FILE" in os.environ:
-        CONFIG["cookie_file"] = os.environ["FREEGPT_COOKIE_FILE"]
+    access_token_env = _get_env("FREEBIE_ACCESS_TOKEN", "FREEGPT_ACCESS_TOKEN")
+    if access_token_env:
+        CONFIG["access_token"] = access_token_env
 
-    api_keys_env = os.environ.get("FREEGPT_API_KEYS")
+    session_token_env = _get_env("FREEBIE_SESSION_TOKEN", "FREEGPT_SESSION_TOKEN")
+    if session_token_env:
+        CONFIG["session_token"] = session_token_env
+
+    cookie_file_env = _get_env("FREEBIE_COOKIE_FILE", "FREEGPT_COOKIE_FILE")
+    if cookie_file_env:
+        CONFIG["cookie_file"] = cookie_file_env
+
+    api_keys_env = _get_env("FREEBIE_API_KEYS", "FREEGPT_API_KEYS")
     if api_keys_env:
         CONFIG["api_keys"] = [k.strip() for k in api_keys_env.split(",") if k.strip()]
 
@@ -58,6 +76,7 @@ def find_config() -> Optional[str]:
     """Search for configuration file in common standard paths."""
     candidates = [
         "./config.json",
+        os.path.expanduser("~/.config/freebie/config.json"),
         os.path.expanduser("~/.config/freegpt/config.json"),
     ]
     for p in candidates:
