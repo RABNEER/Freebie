@@ -12,7 +12,7 @@
 **Production-grade, high-performance OpenAI-compatible REST & SSE API proxy.**  
 *Reverse-engineers ChatGPT Web (`chatgpt.com`) with automated Cloudflare TLS impersonation and native Sentinel PoW solving, coupled with an instant, zero-authentication Google Gemini Flash fallback engine.*
 
-[Features](#-key-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Zero-Auth Gemini](#-zero-auth-instant-gemini-mode) • [ChatGPT Auth](#-chatgpt-authenticated-mode) • [Extension](#-companion-chrome-extension) • [Configuration](#-configuration) • [API Reference](#-api-reference) • [Docker](#-docker-deployment)
+[Features](#-key-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Integration Guide](docs/integration-guide.md) • [API Reference](docs/api-reference.md) • [Zero-Auth Gemini](#-zero-auth-instant-gemini-mode) • [ChatGPT Auth](#-chatgpt-authenticated-mode) • [Docker](#-docker-deployment)
 
 </div>
 
