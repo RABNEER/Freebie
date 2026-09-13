@@ -101,19 +101,25 @@ pip install -e .
 
 ### 1. Launch Server
 
-Start the Freebie API server:
+Start the Freebie API server with a single command:
 
 ```bash
-freebie --port 8080
+freebie
+```
+
+*(By default, it listens on `http://0.0.0.0:8080` with documentation at `http://127.0.0.1:8080/docs`).*
+
+To customize host or port:
+
+```bash
+freebie --port 9000 --host 127.0.0.1
 ```
 
 Or run via Python module:
 
 ```bash
-python -m freebie --port 8080
+python -m freebie
 ```
-
-The server binds to `http://127.0.0.1:8080` with documentation at `http://127.0.0.1:8080/docs`.
 
 ### 2. Verify Connectivity & Diagnostics
 
@@ -414,6 +420,29 @@ tests/test_server.py::test_chat_completions_chatgpt_authenticated PASSED [ 93%]
 tests/test_server.py::test_chat_completions_with_tool_calling PASSED     [100%]
 ============================== 15 passed in 0.33s ==============================
 ```
+
+---
+
+## 🚢 Automated CI/CD & PyPI Publishing
+
+Freebie includes fully automated GitHub Actions workflows for testing and PyPI releases:
+
+### 1. Automated Testing (`ci.yml`)
+Every commit pushed to `main` and all pull requests are automatically tested across **Python 3.9, 3.10, 3.11, and 3.12**.
+
+### 2. Automatic PyPI Publishing (`publish.yml`)
+Releasing a new version to PyPI is 100% automated:
+
+1. Add your PyPI token to GitHub:
+   - Go to **Settings** ➔ **Secrets and variables** ➔ **Actions**.
+   - Create a repository secret named `PYPI_API_TOKEN` containing your PyPI token.
+   *(Or configure [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/) for `RABNEER/Freebie` without needing any secret token!)*
+2. Push a git version tag:
+   ```bash
+   git tag v0.1.0
+   git push origin v0.1.0
+   ```
+   GitHub Actions will automatically build source distributions, wheels, verify package integrity with `twine`, and publish directly to [pypi.org/project/freebie-api/](https://pypi.org/project/freebie-api/)!
 
 ---
 

@@ -1,6 +1,9 @@
 name: Publish to PyPI
 
 on:
+  push:
+    tags:
+      - "v*"
   release:
     types: [published]
   workflow_dispatch:
@@ -14,7 +17,8 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Set up Python 3.11
       uses: actions/setup-python@v5
@@ -32,5 +36,12 @@ jobs:
     - name: Verify package metadata
       run: twine check dist/*
 
-    - name: Publish package distributions to PyPI
+    - name: Publish with Token (if secret is present)
+      if: "${{ secrets.PYPI_API_TOKEN != '' }}"
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
+
+    - name: Publish with Trusted Publishing OIDC (if no secret token)
+      if: "${{ secrets.PYPI_API_TOKEN == '' }}"
       uses: pypa/gh-action-pypi-publish@release/v1
