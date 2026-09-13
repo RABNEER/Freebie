@@ -1,0 +1,16 @@
+{
+  "host": "0.0.0.0",
+  "port": 8080,
+  "api_keys": [
+    "sk-freegpt-secret"
+  ],
+  "proxy": null,
+  "default_model": "auto",
+  "access_token": null,
+  "session_token": null,
+  "cookie_file": null,
+  "request_timeout_sec": 120,
+  "history_and_training_disabled": true,
+  "impersonate": "chrome124",
+  "log_requests": true
+}

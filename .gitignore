@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Sensitive user credentials & logs
+config.json
+cookie.txt
+chatgpt-auth.json
+*.log
+
+# Databases & local state
+*.db
+*.db-shm
+*.db-wal
+agentbox.db*
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
